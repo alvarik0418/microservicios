@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: user
+  datasource:
+    url: jdbc:mysql://localhost:3308/db_user
+    username: root
+    password: Netec123
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+server:
+  port: 8081
+
+springdoc:
+  api-docs:
+    path: /bancolombia-doc
+  package-to-scan: package com.ms.user.ms_user.controller
