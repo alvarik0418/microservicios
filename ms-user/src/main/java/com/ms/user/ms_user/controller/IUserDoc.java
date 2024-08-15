@@ -1,11 +1,13 @@
 package com.ms.user.ms_user.controller;
 
+import com.ms.user.ms_user.dto.UserDTO;
 import com.ms.user.ms_user.model.UserEntity;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -33,5 +35,5 @@ public interface IUserDoc {
                 )
             }
     )
-    ResponseEntity<UserEntity> createUser(@RequestBody UserEntity user);
+    ResponseEntity<UserEntity> createUser(@RequestBody @Valid UserDTO user);
 }
