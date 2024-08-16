@@ -26,7 +26,7 @@ public class NotificationServiceImpl implements INotificacionService {
         Session session = Session.getInstance(props,
                 new jakarta.mail.Authenticator() {
                     protected PasswordAuthentication getPasswordAuthentication() {
-                        return new PasswordAuthentication("alvarik0418@gmail.com", "");
+                        return new PasswordAuthentication("", "");
                     }
                 });
         Message msg = new MimeMessage(session);

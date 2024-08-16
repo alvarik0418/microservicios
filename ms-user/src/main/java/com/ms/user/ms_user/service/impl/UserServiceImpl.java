@@ -1,7 +1,9 @@
 package com.ms.user.ms_user.service.impl;
 
+import com.ms.user.ms_user.dto.EmailDTO;
 import com.ms.user.ms_user.dto.UserDTO;
 import com.ms.user.ms_user.exception.MyHandleException;
+import com.ms.user.ms_user.external.service.INotificationServiceFeign;
 import com.ms.user.ms_user.model.UserEntity;
 import com.ms.user.ms_user.repository.IUserRepository;
 import com.ms.user.ms_user.service.IUserService;
@@ -19,6 +21,7 @@ import java.util.UUID;
 public class UserServiceImpl implements IUserService {
 
     private final IUserRepository IUserRepository;
+    private final INotificationServiceFeign INotificationService;
 
     @Override
     public ResponseEntity<UserEntity> create(UserDTO userDto) {
@@ -37,6 +40,15 @@ public class UserServiceImpl implements IUserService {
                 .build();
 
         var newUser = this.IUserRepository.save(user);
+
+        var email = EmailDTO.builder()
+                            .subject("Created User")
+                            .destination("alvarik0418@gmail.com")
+                            .body("User was created correctly")
+                            .build();
+
+        this.INotificationService.sendEmail(email);
+
         return ResponseEntity.status(HttpStatus.CREATED).body(newUser);
     }
 
